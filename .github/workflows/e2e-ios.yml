@@ -3,10 +3,10 @@ name: e2e-ios
 on:
   pull_request:
     branches:
-      - 'main'
+      - 'master'
   push:
     branches:
-      - 'main'
+      - 'master'
 
 jobs:
   e2e:
@@ -23,7 +23,6 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn' # cache packages, but not node_modules
-
 
       - name: Cache node modules
         uses: actions/cache@v3
@@ -63,13 +62,13 @@ jobs:
           brew install applesimutils
 
       - name: Build
-        run: npx detox build --configuration ios.sim.release
+        run: yarn e2e:build:ios-release
 
-      # - name: Test
-      #   run: |
-      #     npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all || \
-      #     npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all || \
-      #     npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all
+      - name: Test
+        run: |
+          yarn e2e:test:ios-release --record-videos all --take-screenshots all --record-logs all || \
+          yarn e2e:test:ios-release --record-videos all --take-screenshots all --record-logs all || \
+          yarn e2e:test:ios-release --record-videos all --take-screenshots all --record-logs all
 
       - uses: actions/upload-artifact@v3
         if: failure()
