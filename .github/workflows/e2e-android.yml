@@ -32,12 +32,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Cache node modules
-        uses: actions/cache@v3
-        id: cache-nm
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('**/yarn.lock') }}
+      # - name: Cache node modules
+      #   uses: actions/cache@v3
+      #   id: cache-nm
+      #   with:
+      #     path: node_modules
+      #     key: node-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install node_modules
+        run: yarn install
 
       - name: Use specific Java version for sdkmanager to work
         uses: actions/setup-java@v2
