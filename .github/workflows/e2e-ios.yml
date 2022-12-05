@@ -66,9 +66,9 @@ jobs:
 
       - name: Test
         run: |
-          yarn e2e:test:ios-release --record-videos all --take-screenshots all --record-logs all || \
-          yarn e2e:test:ios-release --record-videos all --take-screenshots all --record-logs all || \
-          yarn e2e:test:ios-release --record-videos all --take-screenshots all --record-logs all
+          npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all || \
+          npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all || \
+          npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all
 
       - uses: actions/upload-artifact@v3
         if: failure()
