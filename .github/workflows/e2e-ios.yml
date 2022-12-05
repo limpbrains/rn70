@@ -65,11 +65,11 @@ jobs:
       - name: Build
         run: npx detox build --configuration ios.sim.release
 
-      - name: Test
-        run: |
-          npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all || \
-          npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all || \
-          npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all
+      # - name: Test
+      #   run: |
+      #     npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all || \
+      #     npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all || \
+      #     npx detox test --configuration ios.sim.release --record-videos all --take-screenshots all --record-logs all
 
       - uses: actions/upload-artifact@v3
         if: failure()
